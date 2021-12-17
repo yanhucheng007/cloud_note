@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改页</title>
+</head>
+<body>
+<form action="{% url 'update' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+        标题：<input type="text" name="title" value="{{ title }}"><input type="submit" value="保存">
+        <br>内容：<input type="number" name="note_id" value="{{ id }}" style="display: none">
+    </p>
+    <p><textarea name="content">{{ content }}</textarea></p>
+    <P>上传文件：<input type="file" name="note_file"></P>
+</form>
+
+</body>
+</html>

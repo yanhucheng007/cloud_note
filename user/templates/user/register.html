@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<form action="{% url 'reg' %}" method="post" style="font-size: 24px">
+    {% csrf_token %}
+    <h1>欢迎来到注册页！</h1>
+    <p>
+        用户名：<input type="text" name="username"><i style="color: red">{{ mes1 }}</i>
+    </p>
+    <p>
+        密码：<input type="password" name="password">
+    </p>
+    <p>
+        确认密码：<input type="password" name="repassword">
+    </p>
+    <input type="submit" value="注册" style="font-size: 24px">
+    <i style="color: red">{{ mes }}</i>
+
+</form>
+
+</body>
+</html>

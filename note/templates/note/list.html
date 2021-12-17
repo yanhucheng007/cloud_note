@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body>
+<div align="center"><a href="{% url 'update' %}">新增笔记</a>&nbsp;
+    <a href="{% url 'index' %}">首页</a>&nbsp;
+    <a href="{% url 'ex' %}">导出所有笔记</a>
+</div>
+<table border="1" cellspacing="0" width="800px" align="center" class="table table-striped">
+    <tr class="active">
+        <th>序号</th>
+        <th>标题</th>
+        <th>创建时间</th>
+        <th>最后一次修改时间</th>
+        <th>附件</th>
+        <th>修改</th>
+        <th>删除</th>
+
+
+    </tr>
+    {% for note in notes %}
+
+        <tr class="info">
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'detail' %}?note_id={{ note.id }}">{{ note.title }}</a></td>
+        <td>{{ note.create_time }}</td>
+        <td>{{ note.update_time }}</td>
+            <td>{{ note.note_file }}</td>
+        <td><a href="{% url 'update' %}?note_id={{ note.id }}">修改</a></td>
+        <td><a href="{% url 'delete' %}?note_id={{ note.id }}">删除</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<p align="center" style="font-size: 20px">第&nbsp;{{ notes.number }}&nbsp;页</p>
+<p align="center" style="font-size: 20px">
+    {% if notes.has_previous %}
+    <a href="{% url 'list_note' %}?page={{ notes.previous_page_number }}">上一页</a>
+    {% endif %}
+    {% for page_num in notes.paginator.page_range %}
+        {% if page_num == notes.number %}
+        <a>{{ page_num }}</a>
+        {% else %}
+    <a href="{% url 'list_note' %}?page={{ page_num }}">{{ page_num }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if notes.has_next %}
+    <a href="{% url 'list_note' %}?page={{ notes.next_page_number }}">下一页</a>
+    {% endif %}
+</p>
+
+</body>
+</html>

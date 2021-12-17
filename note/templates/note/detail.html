@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情页</title>
+</head>
+<body>
+<h1>{{ note.title }}</h1>
+<div style="font-style: italic">创建时间：{{ note.create_time }}&nbsp;&nbsp;修改时间：{{ note.update_time }}</div>
+<p style="font-size: 24px">
+    {{ note.content }}
+</p>
+<br><br><br>
+<a href="/media/{{ note.note_file }}">{{name}}</a>
+
+</body>
+</html>
